@@ -18,7 +18,7 @@
 	refresh();
 
 	const check = () => {
-		let index = dow.indexOf(answer.toLowerCase());
+		let index = dow.indexOf(answer.toLowerCase().trim());
 		if (index == d.getDay()) {
 			report = 'Correct!';
 		} else {
