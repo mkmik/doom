@@ -1,8 +1,11 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	let answer = '';
 	let report = '';
 	let d: Date;
 	let s = '';
+	let input: any;
 
 	let dow = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
@@ -14,8 +17,12 @@
 		s = d.toJSON().slice(0, 10);
 		answer = '';
 		report = '';
+
+		if (input !== undefined) {
+			input.focus();
+		}
 	};
-	refresh();
+	onMount(refresh);
 
 	const check = () => {
 		let index = dow.indexOf(answer.toLowerCase().trim());
@@ -28,7 +35,10 @@
 	};
 
 	const onKeyPress = (e: any) => {
-		if (e.charCode === 13) check();
+		if (e.charCode === 13) {
+			check();
+			input.blur();
+		}
 	};
 </script>
 
@@ -39,6 +49,7 @@
 		<input
 			class="border border-sky-500 rounded-md p-2"
 			on:keypress={onKeyPress}
+			bind:this={input}
 			bind:value={answer}
 		/>
 	</div>
