@@ -32,7 +32,7 @@
 	};
 </script>
 
-<div class="h-screen grid gap-4 place-items-center">
+<div class="h-screen grid gap-4 place-items-center text-xl">
 	<div>What day of the week was: <b>{s}</b> ?</div>
 
 	<div>
