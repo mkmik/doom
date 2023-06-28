@@ -24,11 +24,22 @@
 		} else {
 			report = 'Wrong!';
 		}
-		console.log(d.getDay(), answer);
 	};
 
-	const onKeyPress = (e: any) => {
-		if (e.charCode === 13) check();
+	const verify = (node: any) => {
+		const onKeyPress = (e: any) => {
+			if (e.charCode === 13) {
+				check();
+				node.blur();
+			}
+		};
+		node.addEventListener('keypress', onKeyPress);
+
+		return {
+			destroy() {
+				node.removeEventListener('keypress', onKeyPress);
+			}
+		};
 	};
 </script>
 
@@ -36,11 +47,7 @@
 	<div>What day of the week was: <b>{s}</b> ?</div>
 
 	<div>
-		<input
-			class="border border-sky-500 rounded-md p-2"
-			on:keypress={onKeyPress}
-			bind:value={answer}
-		/>
+		<input class="border border-sky-500 rounded-md p-2" use:verify bind:value={answer} />
 	</div>
 
 	<div class="h-8"><b>{report}</b></div>
