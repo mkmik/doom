@@ -10,7 +10,9 @@
 	let dow = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
 	const randomDate = (start: Date, end: Date) => {
-		return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+		let tmp = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+		let s = tmp.toJSON().slice(0, 10);
+		return new Date(s);
 	};
 	const refresh = () => {
 		d = randomDate(new Date(1700, 0, 1), new Date(2200, 0, 1));
