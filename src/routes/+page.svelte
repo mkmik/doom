@@ -32,12 +32,25 @@
 	};
 </script>
 
-<p>What day of the week was: <b>{s}</b> ?</p>
+<div class="h-screen grid gap-4 place-items-center">
+	<div>What day of the week was: <b>{s}</b> ?</div>
 
-<p><input on:keypress={onKeyPress} bind:value={answer} /></p>
+	<div>
+		<input
+			class="border border-sky-500 rounded-md p-2"
+			on:keypress={onKeyPress}
+			bind:value={answer}
+		/>
+	</div>
 
-<p><b>{report}</b></p>
+	<div class="h-8"><b>{report}</b></div>
 
-{#if report !== ''}
-	<p><button on:click={refresh}>Again</button></p>
-{/if}
+	<div class="h-8">
+		{#if report !== ''}
+			<button
+				class="font-bold py-1 px-4 rounded bg-blue-500 text-white hover:bg-blue-700"
+				on:click={refresh}>Again</button
+			>
+		{/if}
+	</div>
+</div>
